@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ordersTable"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#3F51B5"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:id="@+id/my_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:minHeight="10dp" >
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/col"
+        android:padding="12dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hayyat Delivery"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:gravity="left"
+            android:layout_weight="1"
+            android:textSize="22sp"
+            />
+        <Button
+            android:id="@+id/reOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:textSize="14sp"
+            android:background="@drawable/button"
+            android:drawableLeft="@drawable/ic_baseline_refresh_24"
+            android:drawableTint="@color/black"
+            android:padding="6dp"
+            android:text="Изменение порядка" />
+
+    </LinearLayout>
+
+
+
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/col"
+        android:clickable="true"
+        android:drawSelectorOnTop="true"
+        android:scrollingCache="true"/>
+
+
+
+
+
+</RelativeLayout>

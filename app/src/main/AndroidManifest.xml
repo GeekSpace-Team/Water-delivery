@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.android.waterdelivery">
+
+    <uses-permission android:name="android.permission.SEND_SMS" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.RECEIVE_SMS" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.READ_SMS" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.WRITE_SMS" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION">
+    </uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION">
+    </uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
+
+    <uses-feature
+        android:name="android.hardware.location"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.location.gps"
+        android:required="true" />
+    <application
+        android:name=".App"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme"
+        android:allowBackup="true" >
+        <meta-data android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <activity
+            android:exported="true"
+            android:name="com.android.waterdelivery.SplashActivity"
+            android:label="@string/app_name"
+            android:noHistory="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.android.waterdelivery.OrderListActivity"
+            android:label="@string/app_name"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="vnd.android.cursor.dir/vnd.qnax.order" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.android.waterdelivery.OrderDetails"
+            android:label="@string/title_activity_order_details"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="true">
+            <intent-filter android:scheme="http://schemas.android.com/apk/res/android">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="vnd.android.cursor.item/vnd.qnax.order" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.waterdelivery.OrderListActivity" />
+        </activity>
+
+        <receiver android:name="com.android.waterdelivery.SMSMonitor"
+            android:exported="false">
+            <intent-filter android:priority="100" >
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
+
+        <provider
+            android:name="com.android.waterdelivery.SettingsContentProvider"
+            android:authorities="com.qnax.waterdelivery.settingsprovider"
+            android:exported="false" >
+        </provider>
+        <provider
+            android:name="com.android.waterdelivery.OrdersContentProvider"
+            android:authorities="com.qnax.waterdelivery.ordersprovider"
+            android:exported="true" >
+        </provider>
+
+        <service
+            android:name="com.android.waterdelivery.SMSService"
+            android:exported="true">
+        </service>
+
+        <receiver android:name=".MyLocationService">
+
+        </receiver>
+
+        <activity
+            android:exported="false"
+            android:name="com.android.waterdelivery.OrderExecutionActivity"
+            android:label="@string/title_activity_order_execution" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.waterdelivery.OrderListActivity" />
+        </activity>
+        <activity
+            android:exported="false"
+            android:name="com.android.waterdelivery.SettingsActivity"
+            android:label="@string/title_activity_settings" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.android.waterdelivery.OrderListActivity" />
+        </activity>
+    </application>
+
+
+</manifest>
